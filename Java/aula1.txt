@@ -1,0 +1,49 @@
+UC-10
+
+- Banco e dados (7 aulas)
+- POO (5 aulas)
+- Sistemas desktop (principal)
+
+______________________________________________
+MySQL e Java
+openjdk 17
+Eclipse - Java Enterprise Edition JavaEE
+
+______________________________________________
+POO - Aula 1
+IDE Eclipse - mudar a perspectiva para Java
+
+Dica: Para voltar ao padrão, selecionar:
+Window -> Perspective -> Reset Perspective
+
+Estrutura de um projeto
+
+Pacote - Classe
+
+POO
+Classe (Modelo para criação de objetos)
+*** Obrigatório iniciar com uma letra maiúscula
+Não usar acentos, caracteres especiais nem espaços
+para nomear uma classe
+
+//método principal em sistemas desktop
+public static void main(String[] args) {
+
+}
+
+Dicas de uso do eclipse:
+<ctrl><espaço> -> Completa o camando
+sysout <ctrl><espaço>
+<ctrl><shift><f> -> identação do código
+<ctrl><shift><o> -> importação automática de recursos
+
+Para gerar a documentação e o executável, selecionar
+o projeto com o botão direito do mouse -> exportar
+javadoc (documentação)
+runnable jar file
+
+(console) java -jar hello.jar
+(gráfico) clicar 2x no executável
+
+
+
