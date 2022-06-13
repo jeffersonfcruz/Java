@@ -1,0 +1,19 @@
+POO -> Abstração (criação do objeto)
+
+Classe (biologia) -> Ex: mamíferos
+
+Objeto (português) -> substantivo
+  |__  características -> adjetivo
+  |__  Ações -> verbo
+
+*** O principal objetivo da POO é a reutilização do código
+
+new (criação de um novo objeto) "Instanciar um objeto"
+. (ponto) -> acessa os atributos e métodos da classe modelo
+
+Construtor:
+- Usado para iniciar automaticamente um código na criação
+  dos objetos. No Java o construtor tem o mesmo nome da classe
+  principal.
+
+

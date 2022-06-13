@@ -36,6 +36,7 @@ Dicas de uso do eclipse:
 sysout <ctrl><espaço>
 <ctrl><shift><f> -> identação do código
 <ctrl><shift><o> -> importação automática de recursos
+<alt><shift><y> -> quebra de linha
 
 Para gerar a documentação e o executável, selecionar
 o projeto com o botão direito do mouse -> exportar
