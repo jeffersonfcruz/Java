@@ -1,0 +1,24 @@
+/**
+ * Hello World 
+ * @author Jefferson Cruz
+ */
+package hello;
+
+import javax.swing.JOptionPane;
+
+/**
+ * Classe Principal - Hello World
+ * 
+ * @author Jefferson Cruz
+ *
+ */
+public class Hello {
+	/**
+	 * Método Principal - Hello World
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		//System.out.println("Hello World");
+		JOptionPane.showMessageDialog(null,"Hello World");
+	}
+}
