@@ -16,4 +16,10 @@ Construtor:
   dos objetos. No Java o construtor tem o mesmo nome da classe
   principal.
 
+Atividade de avaliação POO Exercício 1
+- Slides 63,64 e 65  (material de apoio)
+
+Salvar o projeto no GitHub
+
+
 
