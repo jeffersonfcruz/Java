@@ -4,7 +4,7 @@
 package carros;
 
 /**
- * @author jefferson.wfcruz
+ * @author Jefferson Cruz
  * Classe responsavel pela criação dos onjetos (Carros)
  */
 public class Objeto {
@@ -14,6 +14,7 @@ public class Objeto {
 	 * Método Principal
 	 */
 	public static void main(String[] args) {
+		
 		Carro ferrari = new Carro ();
 		ferrari.ano = 2022;
 		ferrari.cor = "Vermelha";

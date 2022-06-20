@@ -1,0 +1,5 @@
+Fundamentos:
+- Laços de repetições
+Dicas eclipse:
+for<ctrl><espaço> (monta a estrutura for)
+<ctrl><shift><o> (importação automática)

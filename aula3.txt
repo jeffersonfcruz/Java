@@ -1,0 +1,13 @@
+Fundamentos do Java (operadores e estruturas de controle)
+POO - Herança (Extends) - Slides 58,59 e 60
+
+Dicas:
+Simulador de operadores lógicos
+https://professorjosedeassis.github.io/logical-operators/
+Eclipse:
+ifel <ctrl><espaço> (criar a estrutura if else)
+
+Atividade de avaliação POO Exercício 1
+- Slides 66 e 67  (material de apoio)
+
+Salvar o projeto no GitHub

@@ -4,14 +4,21 @@
  */
 package carros;
 
+import java.util.Random;
+
 /**
  * @author Jefferson Cruz
  * Classe Modelo
  */
 public class Carro {
 	public Carro() {
-		super();
-		System.out.println("-----------------------------------------------------");
+		for (int i = 0; i < 16; i++) {
+			Random gerador = new Random ();
+			String chassi = new String("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+			char numeracao = (char)gerador.nextInt(chassi.length());
+			System.out.print(chassi.charAt(numeracao));
+		}
+		System.out.println(" ");
 	}
 	int ano;
 	String cor;
