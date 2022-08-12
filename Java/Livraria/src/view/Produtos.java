@@ -1,9 +1,9 @@
 package view;
 
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 
 import javax.swing.JDialog;
-import java.awt.Toolkit;
 
 public class Produtos extends JDialog {
 

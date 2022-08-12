@@ -3,6 +3,8 @@ package view;
 import java.awt.EventQueue;
 import java.awt.SystemColor;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.DateFormat;
@@ -14,8 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class Principal extends JFrame {
 
@@ -25,6 +26,11 @@ public class Principal extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JLabel lblData;
+	public JButton btnUsuarios;
+	public JButton btnRelatorios;
+	public JPanel panelUsuario;
+	public JLabel lblUsuario;
+	//atribuir uma variavel publica.
 
 	/**
 	 * Launch the application.
@@ -66,29 +72,31 @@ public class Principal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		lblUsuario = new JLabel("New label");
+		lblUsuario.setBounds(148, 345, 128, 72);
+		contentPane.add(lblUsuario);
+		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(Principal.class.getResource("/img/logo.png")));
 		lblNewLabel.setBounds(10, 289, 128, 128);
 		contentPane.add(lblNewLabel);
 		
-		lblData = new JLabel("New label");
-		lblData.setBounds(286, 362, 266, 40);
-		contentPane.add(lblData);
-		
-		JButton btnNewButton = new JButton("");
-		btnNewButton.addActionListener(new ActionListener() {
-			//evento clicar no botão (usuarios)
+		btnUsuarios = new JButton("");
+		btnUsuarios.setEnabled(false);
+		btnUsuarios.addActionListener(new ActionListener() {
+			//evento clicar no botï¿½o (usuarios)
 			public void actionPerformed(ActionEvent e) {
 				//link para o JDialog
 				Usuarios usuarios = new Usuarios();
 				usuarios.setVisible(true);
-				//habilitar o modal no cógido de (Usuarios) para não abrir mais de uma janela
+				//habilitar o modal no cï¿½gido de (Usuarios) para nï¿½o abrir mais de uma janela
 			}
 		});
-		btnNewButton.setIcon(new ImageIcon(Principal.class.getResource("/img/users.png")));
-		btnNewButton.setToolTipText("Usu\u00E1rios");
-		btnNewButton.setBounds(10, 11, 128, 128);
-		contentPane.add(btnNewButton);
+		btnUsuarios.setIcon(new ImageIcon(Principal.class.getResource("/img/users.png")));
+		btnUsuarios.setToolTipText("Usu\u00E1rios");
+		btnUsuarios.setBounds(10, 11, 128, 128);
+		contentPane.add(btnUsuarios);
 		
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -126,17 +134,18 @@ public class Principal extends JFrame {
 		btnNewButton_1_2.setBounds(424, 11, 128, 128);
 		contentPane.add(btnNewButton_1_2);
 		
-		JButton btnNewButton_1_3 = new JButton("");
-		btnNewButton_1_3.addActionListener(new ActionListener() {
+		btnRelatorios = new JButton("");
+		btnRelatorios.setEnabled(false);
+		btnRelatorios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Relatorios relatorios = new Relatorios();
 				relatorios.setVisible(true);
 			}
 		});
-		btnNewButton_1_3.setToolTipText("Relat\u00F3rios");
-		btnNewButton_1_3.setIcon(new ImageIcon(Principal.class.getResource("/img/relatorios.png")));
-		btnNewButton_1_3.setBounds(10, 150, 128, 128);
-		contentPane.add(btnNewButton_1_3);
+		btnRelatorios.setToolTipText("Relat\u00F3rios");
+		btnRelatorios.setIcon(new ImageIcon(Principal.class.getResource("/img/relatorios.png")));
+		btnRelatorios.setBounds(10, 150, 128, 128);
+		contentPane.add(btnRelatorios);
 		
 		JButton btnNewButton_1_4 = new JButton("");
 		btnNewButton_1_4.addActionListener(new ActionListener() {
@@ -174,9 +183,14 @@ public class Principal extends JFrame {
 		btnNewButton_1_6.setBounds(424, 150, 128, 128);
 		contentPane.add(btnNewButton_1_6);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(SystemColor.textHighlight);
-		panel.setBounds(10, 345, 542, 72);
-		contentPane.add(panel);
+		panelUsuario = new JPanel();
+		panelUsuario.setBackground(SystemColor.textHighlight);
+		panelUsuario.setBounds(10, 345, 542, 72);
+		contentPane.add(panelUsuario);
+		panelUsuario.setLayout(null);
+		
+		lblData = new JLabel("New label");
+		lblData.setBounds(285, 0, 257, 72);
+		panelUsuario.add(lblData);
 	}
 }

@@ -1,16 +1,16 @@
 package view;
 
+import java.awt.Cursor;
 import java.awt.EventQueue;
-
-import javax.swing.JDialog;
 import java.awt.Toolkit;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
-import java.awt.Cursor;
-import javax.swing.ImageIcon;
 
 public class Clientes extends JDialog {
 

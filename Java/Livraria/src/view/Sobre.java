@@ -1,14 +1,12 @@
 package view;
 
 import java.awt.EventQueue;
-
-import javax.swing.JDialog;
 import java.awt.Toolkit;
-import javax.swing.JButton;
-import javax.swing.JTextArea;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
+
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
 
 public class Sobre extends JDialog {
 
