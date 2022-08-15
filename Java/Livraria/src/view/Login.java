@@ -2,7 +2,6 @@ package view;
 
 import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -19,6 +18,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import Atxy2k.CustomTextField.RestrictedTextField;
 import model.DAO;
 
 public class Login extends JFrame {
@@ -76,6 +76,12 @@ public class Login extends JFrame {
 		txtSenha = new JPasswordField();
 		txtSenha.setBounds(112, 110, 241, 20);
 		contentPane.add(txtSenha);
+	
+		lblStatus = new JLabel("");
+		lblStatus.setIcon(new ImageIcon(Login.class.getResource("/img/dbofff.png")));
+		lblStatus.setBounds(10, 186, 64, 64);
+		contentPane.add(lblStatus);
+		
 		
 		JButton btnLogar = new JButton("Acessar");
 		btnLogar.addActionListener(new ActionListener() {
@@ -83,16 +89,21 @@ public class Login extends JFrame {
 				logar();
 			}
 		});
+		
 		btnLogar.setBounds(242, 147, 111, 23);
 		contentPane.add(btnLogar);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(SystemColor.textHighlight);
-		panel.setBounds(10, 212, 414, 41);
-		contentPane.add(panel);
-		panel.setLayout(null);
-		}
+		RestrictedTextField login = new RestrictedTextField(txtLogin);
+		login.setLimit(10);
+
+		RestrictedTextField senha = new RestrictedTextField(txtSenha);
+		senha.setLimit(255);
 		
+		getRootPane().setDefaultButton(btnLogar);
+	}
+		
+	
+	
 	//Criação de um objeto para acessar a camada model
 		DAO dao = new DAO();
 		private JLabel lblStatus;
