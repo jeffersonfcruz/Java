@@ -4,10 +4,13 @@ import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLIntegrityConstraintViolationException;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -20,9 +23,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 import model.DAO;
-
+import net.proteanit.sql.DbUtils;
 public class Fornecedor extends JDialog {
 
 	/**
@@ -81,6 +85,12 @@ public class Fornecedor extends JDialog {
 		getContentPane().add(lblNewLabel);
 
 		txtPesquisarFornecedor = new JTextField();
+		txtPesquisarFornecedor.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				pesquisarFornecedorTabela();
+			}
+		});
 		txtPesquisarFornecedor.setBounds(92, 18, 130, 20);
 		getContentPane().add(txtPesquisarFornecedor);
 		txtPesquisarFornecedor.setColumns(10);
@@ -249,7 +259,7 @@ public class Fornecedor extends JDialog {
 		lblNewLabel_1_2_2_1_1_1_1.setBounds(547, 331, 25, 14);
 		getContentPane().add(lblNewLabel_1_2_2_1_1_1_1);
 
-		JTextArea txtForObs = new JTextArea();
+		txtForObs = new JTextArea();
 		txtForObs.setBounds(92, 375, 232, 54);
 		getContentPane().add(txtForObs);
 
@@ -257,7 +267,13 @@ public class Fornecedor extends JDialog {
 		lblNewLabel_1_2_2_2_1_1.setBounds(20, 380, 70, 14);
 		getContentPane().add(lblNewLabel_1_2_2_2_1_1);
 
-		JButton btnExcluir = new JButton("");
+		btnExcluir = new JButton("");
+		btnExcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				excluirFornecedor();
+			}
+		});
+		btnExcluir.setEnabled(false);
 		btnExcluir.setToolTipText("Remover");
 		btnExcluir.setBorderPainted(false);
 		btnExcluir.setContentAreaFilled(false);
@@ -265,7 +281,13 @@ public class Fornecedor extends JDialog {
 		btnExcluir.setBounds(625, 376, 64, 64);
 		getContentPane().add(btnExcluir);
 
-		JButton btnAlterar = new JButton("");
+		btnAlterar = new JButton("");
+		btnAlterar.setEnabled(false);
+		btnAlterar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				alterarFornecedores();
+			}
+		});
 		btnAlterar.setToolTipText("Alterar");
 		btnAlterar.setIcon(new ImageIcon(Fornecedor.class.getResource("/img/modify.png")));
 		btnAlterar.setContentAreaFilled(false);
@@ -273,7 +295,12 @@ public class Fornecedor extends JDialog {
 		btnAlterar.setBounds(551, 375, 64, 64);
 		getContentPane().add(btnAlterar);
 
-		JButton btnAdicionar = new JButton("");
+		btnAdicionar = new JButton("");
+		btnAdicionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				adicionarFornecedor();
+			}
+		});
 		btnAdicionar.setToolTipText("Adicionar");
 		btnAdicionar.setIcon(new ImageIcon(Fornecedor.class.getResource("/img/create.png")));
 		btnAdicionar.setContentAreaFilled(false);
@@ -286,6 +313,13 @@ public class Fornecedor extends JDialog {
 		getContentPane().add(scrollPane);
 
 		tblFornecedores = new JTable();
+		tblFornecedores.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			//evento clicar com o mouse na tabela
+				setarCaixasTexto();
+			}
+		});
 		scrollPane.setViewportView(tblFornecedores);
 
 		JButton btnPesquisar = new JButton("Buscar");
@@ -300,6 +334,11 @@ public class Fornecedor extends JDialog {
 	}// fim do construtor
 
 	DAO dao = new DAO();
+	private JTextArea txtForObs;
+	private JButton btnAdicionar;
+	private JButton btnAlterar;
+	private JButton btnExcluir;
+	
 	private void pesquisarFornecedor() {
 		// validação
 		if (txtForId.getText().isEmpty()) {
@@ -313,6 +352,8 @@ public class Fornecedor extends JDialog {
 				pst.setString(1, txtForId.getText());
 				ResultSet rs = pst.executeQuery();
 				if (rs.next()) {
+					btnAlterar.setEnabled(true);
+					btnExcluir.setEnabled(true);
 					txtForId.setText(rs.getString(1));
 					txtForCnpj.setText(rs.getString(2));
 					txtForIe.setText(rs.getString(3));
@@ -332,6 +373,8 @@ public class Fornecedor extends JDialog {
 					cboForUF.setSelectedItem(rs.getString(17));
 				} else {
 					JOptionPane.showMessageDialog(null, "Fornecedor inexistente");
+					limparForCampos();
+					btnAdicionar.setEnabled(true);
 				}
 				con.close();
 
@@ -340,5 +383,216 @@ public class Fornecedor extends JDialog {
 			}
 		}
 
+	}
+	
+	private void pesquisarFornecedorTabela() {
+		String readT = "select idfor as ID ,fantasia as fornecedor,fone from fornecedores where fantasia like ?";
+		try {
+			// estabelecer conexão
+			Connection con = dao.conectar();
+			// Preparar a execução da query
+			PreparedStatement pst = con.prepareStatement(readT);
+			// Substituir os ???? pelo conteudo das caixas de texto
+			pst.setString(1, txtPesquisarFornecedor.getText() + "%");
+			ResultSet rs = pst.executeQuery();
+			//uso da biblioteca ts2xml para "popular" a tabela
+			tblFornecedores.setModel(DbUtils.resultSetToTableModel(rs));
+			
+			con.close();
+			
+		}	catch(Exception e){
+			System.out.println(e);
+		}
+		
+	}
+	/**
+	 * Método responsavel por setar as caixas  de texto
+	 * de acordo com os campos da tabela (mouse click)
+	 */
+	
+	private void setarCaixasTexto() {
+		//criar uma variável para receber a linha da tabela
+		int setar = tblFornecedores.getSelectedRow();
+		txtForId.setText(tblFornecedores.getModel().getValueAt(setar, 0).toString());
+		limparCamposFornecedor();
+	}
+	// demais metodos de CRUD
+	
+	/**
+	 * Limpar campos
+	 */
+	private void limparCamposFornecedor() {
+		//limpar a tabela
+		((DefaultTableModel) tblFornecedores.getModel()).setRowCount(0);
+	}
+	
+	private void adicionarFornecedor() {
+		// validação
+		if (txtForCnpj.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Preencha o CNPJ");
+			txtForCnpj.requestFocus();
+		} else if (txtForIe.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Preencha a Inscrição Estadual");
+			txtForIe.requestFocus();
+		} else if (txtForIm.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Preencha a Inscrição Municipal");
+			txtForIm.requestFocus();
+		} else if (txtForRazao.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Preencha a Razão");
+			txtForRazao.requestFocus();
+		} else if (txtForFantasia.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Preencha o Nome Fantasia");
+			txtForFantasia.requestFocus();
+		} else if (txtForFone.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Indorme o telefone");
+			txtForFone.requestFocus();
+		} else if (txtForEmail.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Informe o E-Mail do Fornecedor");
+			txtForEmail.requestFocus();
+		} else if (txtForCep.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Informe o CEP");
+			txtForCep.requestFocus();
+		} else if (txtForEndereco.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Preencha o Endereço");
+			txtForEndereco.requestFocus();
+		} else if (txtForNumero.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Preencha o Numero do endereço");
+			txtForNumero.requestFocus();
+		} else if (txtForComplemento.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Preencha o Complemento");
+			txtForComplemento.requestFocus();
+		} else if (txtForBairro.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Preencha o Bairro");
+			txtForBairro.requestFocus();
+		} else if (txtForCidade.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Preencha a Cidade");
+			txtForCidade.requestFocus();
+		} else if (cboForUF.getSelectedItem().equals("")) {
+			JOptionPane.showMessageDialog(null, "Selecione a UF");
+			cboForUF.requestFocus();
+		} else {
+			// lógica principal
+			String create = "insert into  fornecedores (cnpj,ie,im,razao,fantasia,site,fone,contato,email,cep,endereco,numero,complemento,bairro,cidade,uf) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			try {
+				// estabelecer conexão
+				Connection con = dao.conectar();
+				// Preparar a execução da query
+				PreparedStatement pst = con.prepareStatement(create);
+				// Substituir os ???? pelo conteudo das caixas de texto
+				pst.setString(1, txtForCnpj.getText());
+				pst.setString(2, txtForIe.getText());
+				pst.setString(3, txtForIm.getText());
+				pst.setString(4, txtForRazao.getText());
+				pst.setString(5, txtForFantasia.getText());
+				pst.setString(6, txtForSite.getText());
+				pst.setString(7, txtForFone.getText());
+				pst.setString(8, txtForContato.getText());
+				pst.setString(9,txtForEmail.getText());
+				pst.setString(10,txtForCep.getText());
+				pst.setString(11,txtForEndereco.getText());
+				pst.setString(12,txtForNumero.getText());
+				pst.setString(13,txtForComplemento.getText());
+				pst.setString(14,txtForBairro.getText());
+				pst.setString(15,txtForCidade.getText());
+				pst.setString(16,cboForUF.getSelectedItem().toString());
+				// Executar a query e inserir o usuario no banco
+				pst.executeUpdate();
+				limparForCampos();
+				// Encerrar a conexão
+				con.close();
+				JOptionPane.showMessageDialog(null, "Usuario cadastrado com sucesso");
+
+				
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+		}
+	}
+	private void alterarFornecedores() {
+				if (txtForId.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Digite o ID do Fornecedor");
+					txtForId.requestFocus();
+				} 
+				else {
+					String update = "update fornecedores set cnpj=?, ie=?, im=?, razao=?, fantasia=?, site=?, fone=?, contato=?, email=?, cep=?, endereco=?, numero=?, complemento=?, bairro=?, cidade=?, uf=?, obs=? where idfor=?";
+					try {
+						Connection con = dao.conectar();
+						PreparedStatement pst = con.prepareStatement(update);
+						pst.setString(1, txtForCnpj.getText());
+						pst.setString(2, txtForIe.getText());
+						pst.setString(3, txtForIm.getText());
+						pst.setString(4, txtForRazao.getText());
+						pst.setString(5, txtForFantasia.getText());
+						pst.setString(6, txtForSite.getText());
+						pst.setString(7, txtForFone.getText());
+						pst.setString(8, txtForContato.getText());
+						pst.setString(9,  txtForEmail.getText());
+						pst.setString(10, txtForCep.getText());
+						pst.setString(11, txtForEndereco.getText());
+						pst.setString(12, txtForNumero.getText());
+						pst.setString(13, txtForComplemento.getText());
+						pst.setString(14, txtForBairro.getText());
+						pst.setString(15, txtForCidade.getText());
+						pst.setString(16, cboForUF.getSelectedItem().toString());
+						pst.setString(17, txtForObs.getText());
+						pst.setString(18, txtForId.getText());
+						pst.executeUpdate();
+				
+						limparForCampos();
+				
+						// Encerrar a conexão
+						con.close();
+						
+						JOptionPane.showMessageDialog(null, "Usuario atualizado com sucesso");
+					}  	catch (Exception e) {
+						System.out.println(e);
+						}
+				}
+	}
+	private void excluirFornecedor () {
+		//validação (confirmação de exclusão)
+		int confirma = JOptionPane.showConfirmDialog(null, "Confirma a exclusão do usuário?", "Atenção!",JOptionPane.YES_NO_OPTION);
+		if (confirma == JOptionPane.YES_OPTION) {
+			//Lógica principal
+			String delete = "delete from fornecedores where idfor=?;";
+			
+			try {
+				// Estabelecer conexão
+				Connection con = dao.conectar();
+				// Preparar a execução da query (comando sql) substituindo a ? pelo iduser
+				PreparedStatement pst = con.prepareStatement(delete);
+				pst.setString(1,txtForId.getText());
+				// Executar a query
+				pst.executeUpdate();
+				// confirmação
+				limparForCampos();
+				JOptionPane.showMessageDialog(null, "Usuário excluído com sucesso.");
+				
+				limparForCampos();
+			}	catch (Exception e) {
+				System.out.println(e);
+			}
+		}
+	}
+	private void limparForCampos() {
+		txtForCnpj.setText(null);
+		txtForIm.setText(null);
+		txtForIe.setText(null);
+		txtForRazao.setText(null);
+		txtForFantasia.setText(null);
+		txtForSite.setText(null);
+		txtForFone.setText(null);
+		txtForContato.setText(null);
+		txtForEmail.setText(null);
+		txtForCep.setText(null);
+		txtForEndereco.setText(null);
+		txtForNumero.setText(null);
+		txtForComplemento.setText(null);
+		txtForBairro.setText(null);
+		txtForCidade.setText(null);
+		cboForUF.setSelectedItem("");
+		btnAdicionar.setEnabled(false);
+		btnAlterar.setEnabled(false);
+		btnExcluir.setEnabled(false);
 	}
 }

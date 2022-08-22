@@ -238,7 +238,7 @@ public class Usuarios extends JDialog {
 				ResultSet rs = pst.executeQuery();
 				// validação(existencia de usuario)
 				if (rs.next()) {
-					// preencher (setar) os campos do formuralario
+					// preencher (setar) os campos do formulario
 					txtUsuId.setText(rs.getString(1));
 					txtUsuNome.setText(rs.getString(2));
 					txtUsuLogin.setText(rs.getString(3));

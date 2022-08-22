@@ -18,17 +18,20 @@ public class Clientes extends JDialog {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTextField textField_10;
+	private JTextField txtCliNome;
+	private JTextField txtCliId;
+	private JTextField txtCliFone;
+	private JTextField txtCliCpf;
+	private JTextField txtCliEmail;
+	private JTextField txtCliCEP;
+	private JTextField txtCliComplemento;
+	private JTextField txtCliNum;
+	private JTextField txtCliEnd;
+	private JTextField txtCliBairro;
+	private JTextField txtCliCidade;
+	private JButton btnAdicionar;
+	private JButton btnAlterar;
+	private JButton btnExcluir;
 
 	/**
 	 * Launch the application.
@@ -61,105 +64,105 @@ public class Clientes extends JDialog {
 		lblNewLabel.setBounds(10, 11, 37, 14);
 		getContentPane().add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(57, 37, 320, 17);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		txtCliNome = new JTextField();
+		txtCliNome.setBounds(57, 37, 320, 17);
+		getContentPane().add(txtCliNome);
+		txtCliNome.setColumns(10);
 		
 		JLabel lblNome = new JLabel("NOME:");
 		lblNome.setBounds(10, 39, 37, 14);
 		getContentPane().add(lblNome);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(35, 8, 77, 17);
-		getContentPane().add(textField_1);
+		txtCliId = new JTextField();
+		txtCliId.setColumns(10);
+		txtCliId.setBounds(35, 8, 77, 17);
+		getContentPane().add(txtCliId);
 		
 		JLabel lblFone = new JLabel("FONE: ");
 		lblFone.setBounds(10, 64, 37, 14);
 		getContentPane().add(lblFone);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(57, 62, 160, 17);
-		getContentPane().add(textField_2);
+		txtCliFone = new JTextField();
+		txtCliFone.setColumns(10);
+		txtCliFone.setBounds(57, 62, 160, 17);
+		getContentPane().add(txtCliFone);
 		
 		JLabel lblCpf = new JLabel("CPF: ");
 		lblCpf.setBounds(10, 117, 37, 14);
 		getContentPane().add(lblCpf);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(57, 115, 160, 17);
-		getContentPane().add(textField_3);
+		txtCliCpf = new JTextField();
+		txtCliCpf.setColumns(10);
+		txtCliCpf.setBounds(57, 115, 160, 17);
+		getContentPane().add(txtCliCpf);
 		
 		JLabel lblEmail = new JLabel("EMAIL: ");
-		lblEmail.setBounds(10, 92, 37, 14);
+		lblEmail.setBounds(10, 92, 54, 14);
 		getContentPane().add(lblEmail);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(57, 90, 207, 17);
-		getContentPane().add(textField_4);
+		txtCliEmail = new JTextField();
+		txtCliEmail.setColumns(10);
+		txtCliEmail.setBounds(57, 90, 207, 17);
+		getContentPane().add(txtCliEmail);
 		
 		JLabel lblMarketing = new JLabel("Deseja receber email? : ");
 		lblMarketing.setBounds(227, 64, 150, 14);
 		getContentPane().add(lblMarketing);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "Sim", "N\u00E3o"}));
-		comboBox.setBounds(370, 60, 54, 22);
-		getContentPane().add(comboBox);
+		JComboBox cboCliEmail = new JComboBox();
+		cboCliEmail.setModel(new DefaultComboBoxModel(new String[] {"", "Sim", "N\u00E3o"}));
+		cboCliEmail.setBounds(370, 60, 54, 22);
+		getContentPane().add(cboCliEmail);
 		
 		JLabel lblCep = new JLabel("CEP: ");
 		lblCep.setBounds(10, 145, 37, 14);
 		getContentPane().add(lblCep);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(57, 143, 86, 17);
-		getContentPane().add(textField_5);
+		txtCliCEP = new JTextField();
+		txtCliCEP.setColumns(10);
+		txtCliCEP.setBounds(57, 143, 86, 17);
+		getContentPane().add(txtCliCEP);
 		
 		JLabel lblEndereo = new JLabel("ENDERE\u00C7O:");
 		lblEndereo.setBounds(10, 173, 77, 14);
 		getContentPane().add(lblEndereo);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(264, 197, 160, 17);
-		getContentPane().add(textField_6);
+		txtCliComplemento = new JTextField();
+		txtCliComplemento.setColumns(10);
+		txtCliComplemento.setBounds(264, 197, 160, 17);
+		getContentPane().add(txtCliComplemento);
 		
 		JLabel lblNumero = new JLabel("NUMERO:");
 		lblNumero.setBounds(286, 145, 54, 14);
 		getContentPane().add(lblNumero);
 		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		textField_7.setBounds(347, 143, 77, 17);
-		getContentPane().add(textField_7);
+		txtCliNum = new JTextField();
+		txtCliNum.setColumns(10);
+		txtCliNum.setBounds(347, 143, 77, 17);
+		getContentPane().add(txtCliNum);
 		
 		JLabel lblComplemento = new JLabel("Complemento:");
 		lblComplemento.setBounds(173, 199, 91, 14);
 		getContentPane().add(lblComplemento);
 		
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
-		textField_8.setBounds(85, 171, 339, 17);
-		getContentPane().add(textField_8);
+		txtCliEnd = new JTextField();
+		txtCliEnd.setColumns(10);
+		txtCliEnd.setBounds(85, 171, 339, 17);
+		getContentPane().add(txtCliEnd);
 		
 		JLabel lblBairro = new JLabel("Bairro:");
 		lblBairro.setBounds(10, 229, 54, 14);
 		getContentPane().add(lblBairro);
 		
-		textField_9 = new JTextField();
-		textField_9.setColumns(10);
-		textField_9.setBounds(57, 227, 106, 17);
-		getContentPane().add(textField_9);
+		txtCliBairro = new JTextField();
+		txtCliBairro.setColumns(10);
+		txtCliBairro.setBounds(57, 227, 106, 17);
+		getContentPane().add(txtCliBairro);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"}));
-		comboBox_1.setBounds(347, 229, 77, 22);
-		getContentPane().add(comboBox_1);
+		JComboBox cboCliUf = new JComboBox();
+		cboCliUf.setModel(new DefaultComboBoxModel(new String[] {"", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"}));
+		cboCliUf.setBounds(347, 229, 77, 22);
+		getContentPane().add(cboCliUf);
 		
 		JLabel lblCidade = new JLabel("Cidade:");
 		lblCidade.setBounds(10, 198, 86, 14);
@@ -169,40 +172,42 @@ public class Clientes extends JDialog {
 		lblMarketing_1_1.setBounds(300, 228, 37, 17);
 		getContentPane().add(lblMarketing_1_1);
 		
-		textField_10 = new JTextField();
-		textField_10.setColumns(10);
-		textField_10.setBounds(57, 198, 106, 17);
-		getContentPane().add(textField_10);
+		txtCliCidade = new JTextField();
+		txtCliCidade.setColumns(10);
+		txtCliCidade.setBounds(57, 198, 106, 17);
+		getContentPane().add(txtCliCidade);
 		
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setDefaultCapable(false);
-		btnNewButton.setContentAreaFilled(false);
-		btnNewButton.setToolTipText("Excluir");
-		btnNewButton.setIcon(new ImageIcon(Clientes.class.getResource("/img/delete.png")));
-		btnNewButton.setBounds(360, 286, 64, 64);
-		getContentPane().add(btnNewButton);
+		btnExcluir = new JButton("");
+		btnExcluir.setEnabled(false);
+		btnExcluir.setDefaultCapable(false);
+		btnExcluir.setContentAreaFilled(false);
+		btnExcluir.setToolTipText("Excluir");
+		btnExcluir.setIcon(new ImageIcon(Clientes.class.getResource("/img/delete.png")));
+		btnExcluir.setBounds(360, 286, 64, 64);
+		getContentPane().add(btnExcluir);
 		
-		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.setToolTipText("Alterar");
-		btnNewButton_1.setBorderPainted(false);
-		btnNewButton_1.setContentAreaFilled(false);
-		btnNewButton_1.setIcon(new ImageIcon(Clientes.class.getResource("/img/modify.png")));
-		btnNewButton_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnNewButton_1.setBounds(286, 286, 64, 64);
-		getContentPane().add(btnNewButton_1);
+		btnAlterar = new JButton("");
+		btnAlterar.setEnabled(false);
+		btnAlterar.setToolTipText("Alterar");
+		btnAlterar.setBorderPainted(false);
+		btnAlterar.setContentAreaFilled(false);
+		btnAlterar.setIcon(new ImageIcon(Clientes.class.getResource("/img/modify.png")));
+		btnAlterar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnAlterar.setBounds(286, 286, 64, 64);
+		getContentPane().add(btnAlterar);
 		
-		JButton btnNewButton_2 = new JButton("");
-		btnNewButton_2.setToolTipText("Adicionar");
-		btnNewButton_2.setIcon(new ImageIcon(Clientes.class.getResource("/img/create.png")));
-		btnNewButton_2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnNewButton_2.setContentAreaFilled(false);
-		btnNewButton_2.setBorderPainted(false);
-		btnNewButton_2.setBounds(212, 286, 64, 64);
-		getContentPane().add(btnNewButton_2);
+		btnAdicionar = new JButton("");
+		btnAdicionar.setToolTipText("Adicionar");
+		btnAdicionar.setIcon(new ImageIcon(Clientes.class.getResource("/img/create.png")));
+		btnAdicionar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnAdicionar.setContentAreaFilled(false);
+		btnAdicionar.setBorderPainted(false);
+		btnAdicionar.setBounds(212, 286, 64, 64);
+		getContentPane().add(btnAdicionar);
 		
-		JButton btnNewButton_3 = new JButton("Buscar CEP");
-		btnNewButton_3.setBounds(153, 141, 89, 23);
-		getContentPane().add(btnNewButton_3);
+		JButton btnBuscarCep = new JButton("Buscar CEP");
+		btnBuscarCep.setBounds(153, 141, 89, 23);
+		getContentPane().add(btnBuscarCep);
 
 	}
 }
