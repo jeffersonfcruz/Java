@@ -30,6 +30,8 @@ public class Principal extends JFrame {
 	public JButton btnRelatorios;
 	public JPanel panelUsuario;
 	public JLabel lblUsuario;
+	public JButton btnFornecedores;
+	public JButton btnClientes;
 	//atribuir uma variavel publica.
 
 	/**
@@ -98,19 +100,21 @@ public class Principal extends JFrame {
 		btnUsuarios.setBounds(10, 11, 128, 128);
 		contentPane.add(btnUsuarios);
 		
-		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		btnFornecedores = new JButton("");
+		btnFornecedores.setEnabled(false);
+		btnFornecedores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Fornecedor fornecedor = new Fornecedor();
 				fornecedor.setVisible(true);
 			}
 		});
-		btnNewButton_1.setToolTipText("Fornecedores");
-		btnNewButton_1.setIcon(new ImageIcon(Principal.class.getResource("/img/fornecedores.png")));
-		btnNewButton_1.setBounds(148, 11, 128, 128);
-		contentPane.add(btnNewButton_1);
+		btnFornecedores.setToolTipText("Fornecedores");
+		btnFornecedores.setIcon(new ImageIcon(Principal.class.getResource("/img/fornecedores.png")));
+		btnFornecedores.setBounds(148, 11, 128, 128);
+		contentPane.add(btnFornecedores);
 		
 		JButton btnNewButton_1_1 = new JButton("");
+		btnNewButton_1_1.setEnabled(false);
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Produtos produtos = new Produtos();
@@ -122,17 +126,17 @@ public class Principal extends JFrame {
 		btnNewButton_1_1.setBounds(286, 11, 128, 128);
 		contentPane.add(btnNewButton_1_1);
 		
-		JButton btnNewButton_1_2 = new JButton("");
-		btnNewButton_1_2.addActionListener(new ActionListener() {
+		btnClientes = new JButton("");
+		btnClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Clientes clientes = new Clientes();
 				clientes.setVisible(true);
 			}
 		});
-		btnNewButton_1_2.setToolTipText("Clientes");
-		btnNewButton_1_2.setIcon(new ImageIcon(Principal.class.getResource("/img/clientes.png")));
-		btnNewButton_1_2.setBounds(424, 11, 128, 128);
-		contentPane.add(btnNewButton_1_2);
+		btnClientes.setToolTipText("Clientes");
+		btnClientes.setIcon(new ImageIcon(Principal.class.getResource("/img/clientes.png")));
+		btnClientes.setBounds(424, 11, 128, 128);
+		contentPane.add(btnClientes);
 		
 		btnRelatorios = new JButton("");
 		btnRelatorios.setEnabled(false);
@@ -148,6 +152,7 @@ public class Principal extends JFrame {
 		contentPane.add(btnRelatorios);
 		
 		JButton btnNewButton_1_4 = new JButton("");
+		btnNewButton_1_4.setEnabled(false);
 		btnNewButton_1_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Pdv pdv = new Pdv();
@@ -160,6 +165,7 @@ public class Principal extends JFrame {
 		contentPane.add(btnNewButton_1_4);
 		
 		JButton btnNewButton_1_5 = new JButton("");
+		btnNewButton_1_5.setEnabled(false);
 		btnNewButton_1_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Ferramentas ferramenta = new Ferramentas();
