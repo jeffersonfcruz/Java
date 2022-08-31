@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -51,7 +53,13 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
-	setResizable(false);
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowActivated(WindowEvent e) {
+				status();
+			}
+		});
+		setResizable(false);
 		setTitle("L O G I N");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -106,26 +114,31 @@ public class Login extends JFrame {
 	
 	//Criação de um objeto para acessar a camada model
 		DAO dao = new DAO();
+		
 		private JLabel lblStatus;
 		/**
 		 * Método usado para verificar o status do servidor
 		 */
 		private void status() {
+
 			try {
-				// Abrir para conexão
+				// Abrir a conexao
 				Connection con = dao.conectar();
+
 				if (con == null) {
-					//Escolher imagem dboff
-					lblStatus.setIcon(new ImageIcon(Login.class.getResource("/img/dbon.png")));
-				} else {
-					// Escolher imagem dbon
+					// Escolher a imagem
 					lblStatus.setIcon(new ImageIcon(Login.class.getResource("/img/dbofff.png")));
+
+				} else {
+					lblStatus.setIcon(new ImageIcon(Login.class.getResource("/img/dbon.png")));
 				}
-				// Não esquecer de fechar a conexão
+
+				// Nao esquecer de fechar a conexao
 				con.close();
 			} catch (Exception e) {
 				System.out.println(e);
 			}
+
 		}
 		/**
 		 * Método usado para autenticar um usuário
@@ -163,11 +176,10 @@ public class Login extends JFrame {
 							Principal principal = new Principal();
 							principal.setVisible(true);
 							//personalizar
-							principal.btnRelatorios.setEnabled(true);
 							principal.btnUsuarios.setEnabled(true);
 							principal.btnFornecedores.setEnabled(true);
 							principal.btnClientes.setEnabled(true);
-							principal.panelUsuario.setBackground(Color.RED);
+							principal.panelUsuario.setBackground(Color.gray);
 							//setar o nome do usuario na tela principal
 							principal.lblUsuario.setText
 							("Usuário: " + rs.getString(2));

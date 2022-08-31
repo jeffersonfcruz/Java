@@ -101,7 +101,7 @@ public class Usuarios extends JDialog {
 		
 		cboUsuPerfil = new JComboBox();
 		cboUsuPerfil.setModel(new DefaultComboBoxModel(new String[] {"", "admin", "vendedor", "user"}));
-		cboUsuPerfil.setBounds(76, 156, 67, 22);
+		cboUsuPerfil.setBounds(117, 156, 67, 22);
 		getContentPane().add(cboUsuPerfil);
 		
 		btnAdicionar = new JButton("");
@@ -120,7 +120,7 @@ public class Usuarios extends JDialog {
 		getContentPane().add(btnAdicionar);
 		
 		JLabel lblNewLabel_3 = new JLabel("Perfil");
-		lblNewLabel_3.setBounds(20, 160, 29, 14);
+		lblNewLabel_3.setBounds(20, 160, 67, 14);
 		getContentPane().add(lblNewLabel_3);
 		
 		btnExcluir = new JButton("");
@@ -255,6 +255,7 @@ public class Usuarios extends JDialog {
 					txtUsuSenha.setEditable(true);
 					txtUsuNome.requestFocus();
 					btnAdicionar.setEnabled(true);
+					limparCampos();
 				}
 				// Nunca esquecer de encerrar a conexão
 				con.close();

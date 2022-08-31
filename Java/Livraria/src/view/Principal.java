@@ -127,6 +127,7 @@ public class Principal extends JFrame {
 		contentPane.add(btnNewButton_1_1);
 		
 		btnClientes = new JButton("");
+		btnClientes.setEnabled(false);
 		btnClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Clientes clientes = new Clientes();
