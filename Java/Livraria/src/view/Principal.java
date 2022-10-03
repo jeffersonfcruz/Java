@@ -32,6 +32,7 @@ public class Principal extends JFrame {
 	public JLabel lblUsuario;
 	public JButton btnFornecedores;
 	public JButton btnClientes;
+	public JButton btnProdutos;
 	//atribuir uma variavel publica.
 
 	/**
@@ -113,18 +114,18 @@ public class Principal extends JFrame {
 		btnFornecedores.setBounds(148, 11, 128, 128);
 		contentPane.add(btnFornecedores);
 		
-		JButton btnNewButton_1_1 = new JButton("");
-		btnNewButton_1_1.setEnabled(false);
-		btnNewButton_1_1.addActionListener(new ActionListener() {
+		btnProdutos = new JButton("");
+		btnProdutos.setEnabled(false);
+		btnProdutos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Produtos produtos = new Produtos();
 				produtos.setVisible(true);
 			}
 		});
-		btnNewButton_1_1.setToolTipText("Produtos");
-		btnNewButton_1_1.setIcon(new ImageIcon(Principal.class.getResource("/img/produto.png")));
-		btnNewButton_1_1.setBounds(286, 11, 128, 128);
-		contentPane.add(btnNewButton_1_1);
+		btnProdutos.setToolTipText("Produtos");
+		btnProdutos.setIcon(new ImageIcon(Principal.class.getResource("/img/produto.png")));
+		btnProdutos.setBounds(286, 11, 128, 128);
+		contentPane.add(btnProdutos);
 		
 		btnClientes = new JButton("");
 		btnClientes.setEnabled(false);
