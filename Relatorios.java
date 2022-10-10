@@ -1,22 +1,16 @@
 package view;
 
-import java.awt.Desktop;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.FileOutputStream;
-import java.text.DateFormat;
-import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import model.DAO;
@@ -86,46 +80,27 @@ public class Relatorios extends JDialog {
 
 	}
 	DAO dao = new DAO();
-	//método responsável pela impressão do relatório de clientes
-		private void relatorioClientes() {
-			//criar objeto para construir a página pdf
-			Document document = new Document();
-			//gerar o documento pdf
-			try {
-				//cria um documento pdf em branco de nome clientes.pdf
-				PdfWriter.getInstance(document, new FileOutputStream("clientes.pdf"));
-				document.open();
-				//gerar o conteúdo do documento
-				Date data = new Date();			
-		        	DateFormat formatador = DateFormat.getDateInstance(DateFormat.FULL);
-				document.add(new Paragraph(new Paragraph(formatador.format(data))));
-				document.add(new Paragraph(" "));
-				document.add(new Paragraph("Clientes cadastrados"));
-				document.add(new Paragraph(" "));
-				//... Demais conteúdos (imagem, tabela, gráfico, etc)
-				PdfPTable tabela = new PdfPTable(4);
-				PdfPCell col1 = new PdfPCell(new Paragraph("Nome"));
-				PdfPCell col2 = new PdfPCell(new Paragraph("Fone"));
-				PdfPCell col3 = new PdfPCell(new Paragraph("CPF"));
-				PdfPCell col4 = new PdfPCell(new Paragraph("E-mail"));
-				tabela.addCell(col1);
-				tabela.addCell(col2);
-				tabela.addCell(col3);
-				tabela.addCell(col4);
-				// Acessar o banco de dados
-				 
-				document.add(tabela);
-			} catch (Exception e) {
-				System.out.println(e);
-			} finally { //executa o código independente do resultado OK ou não
-				document.close();
-			}
-			
-			//abrir o documento que foi gerado no leitor padrão de pdf do sistema (PC)
-			try {
-				Desktop.getDesktop().open(new File("clientes.pdf"));
-			} catch (Exception e) {
-				System.out.println(e);
-			}
+	
+	//método responsavel pela impressao do relatorio de clientes
+	
+	private void relatorioClientes() {
+		Document document = new Document();
+		try {
+			//cria um documento pdf de nome clientes.pdf
+			PdfWriter.getInstance(document, new FileOutputStream("clientes.pdf"));
+			document.open();
+			//gerar o conteudo do documento
+			document.add(new Paragraph("Clientes Cadastrados"));
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally { //executa o código independentedo resultado OK ou não
+			document.close();
 		}
+		// abrir um documento gerado no leitor padrão de pdf do sistema
+		try {
+			Desktop.getDesktop().
+		} catch {
+			
+		}
+	}
 }

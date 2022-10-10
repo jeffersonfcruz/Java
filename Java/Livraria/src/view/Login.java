@@ -179,6 +179,7 @@ public class Login extends JFrame {
 							principal.btnUsuarios.setEnabled(true);
 							principal.btnFornecedores.setEnabled(true);
 							principal.btnClientes.setEnabled(true);
+							principal.btnRelatorios.setEnabled(true);
 							principal.panelUsuario.setBackground(Color.gray);
 							//setar o nome do usuario na tela principal
 							principal.lblUsuario.setText
